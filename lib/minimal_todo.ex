@@ -32,15 +32,13 @@ defmodule MinimalTodo do
   def create_header(headers) do
     case IO.gets("Add field: ") |> String.trim do
       "" -> headers
-      header -> create_header([header |  headers])
+      header -> create_header([header | headers])
     end
   end
 
   def create_headers do
-    IO.puts "What data should each Todo have?\n"
-    <> "Enter field names one by one and empty line when you're done.\n"
-    create_header([])
-
+    IO.puts "Enter itens names one by one and empty line when you're done.\n"
+    create_header([]) |> IO.inspect
   end
 
   def create_initial_todo do
@@ -75,7 +73,7 @@ defmodule MinimalTodo do
   def get_command(data) do
     prompt = """
     Type the first letter of the command you want to run
-    R)ead Todos A)dd a Todo D)elete a Todo L)oad a .csv S)ave a .csv
+    r)ead todos a)dd a todo d)elete a todo l)oad a .csv s)ave a .csv
     """
 
     command = IO.gets(prompt)
@@ -99,7 +97,7 @@ defmodule MinimalTodo do
   end
 
   def get_item_name(data) do
-    name = IO.gets("Enter the name of the new todo: ") |> String.trim
+    name = IO.gets("Enter the name of the new item: ") |> String.trim
     if Map.has_key?(data, name) do
       IO.puts "Todo with that name already exists!\n"
       get_item_name(data)
@@ -158,6 +156,9 @@ defmodule MinimalTodo do
     Enum.join(rows_strings, "\n")
   end
 
+  @doc """
+  Save file CSV.
+  """
   def save_csv(data) do
     filename = IO.gets("Name of .csv to save: ") |> String.trim
     filedata = prepare_csv(data)
