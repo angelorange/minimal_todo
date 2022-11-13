@@ -7,3 +7,5 @@
 ```
 iex(1)> MinimalTodo.start
 ```
+
+![Screenshot](cmdline.jpeg)
