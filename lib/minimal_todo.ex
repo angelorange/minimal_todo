@@ -17,11 +17,6 @@ defmodule MinimalTodo do
     else
       load_csv()
     end
-    #ask user for a file name
-    #open file and read
-    # parse the data
-    #ask user for command
-    # (read todos, add todos, delete todos, load files, save files)
   end
 
   def add_todo(data) do
@@ -32,10 +27,6 @@ defmodule MinimalTodo do
     IO.puts ~s(New todo "#{name}" added.)
     new_data = Map.merge(data, new_todo)
     get_command(new_data)
-    #get fields values from user
-    #create todo
-      #merge into data
-    # get_command(new_data)
   end
 
   def create_header(headers) do
